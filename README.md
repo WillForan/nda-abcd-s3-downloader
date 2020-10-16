@@ -4,21 +4,26 @@ This tool can be used to download BIDS inputs and derivatives from the DCAN Labs
 
 ## Requirements
 
+### NDAR permissions and package
+
+To use this downloader you must 
+1. have an account on the [NDA website](https://ndar.nih.gov/) 
+2. acquire institutional approval to be added to the "Adolescent Brain Cognitive Development (ABCD) / Connectome Coordination Facility (CCF)" permissions group. See NDA's [data permissions](https://nda.nih.gov/user/dashboard/data_permissions.html)
+3. Download the "[DCAN Labs ABCD-BIDS MRI pipeline inputs and derivatives](https://nda.nih.gov/edit_collection.html?id=3165)" collection
+
+#### NDAR package
+1.  Browse to [collection 3165](https://nda.nih.gov/edit_collection.html?id=3165).  Alternatively, query "DCAN Labs ABCD-BIDS MRI pipeline inputs and derivatives" from the [NDA](https://ndar.nih.gov/)'s [Data from Labs](https://nda.nih.gov/general-query.html) search.
+1.  Select the "Shared Data" tab.
+1.  Click "Add to Cart" at the bottom. <br>[<img src=imgs/00_cart.png width=300px>](imgs/00_cart.png)
+1.  It will take a minute to update the "Filter Cart" in the upper right corner, but when that is done select "Package/Add to Study". [<img src=imgs/01_create_data.png width=200px>](imgs/01_create_data.png)
+1.  Select "Create Package", name your package accordingly, and click "Create Package". <br>  [<img src=imgs/02_create_package.png width=300px>](imgs/02_create_package.png)
+    -   **IMPORTANT: Make sure "Include associated data files" is deselected** or you will automatically attempt to download all the data through the NDA's package manager. This is unreliable on such a large dataset. That is why this downloader exists! 
+1. Wait for the download to be ready. <br>[<img src=imgs/03_noAssoc.png width=200px>](imgs/03_noAssoc.png)<br>[<img src=imgs/04_wait.png width=200px>](imgs/04_wait.png)
+1.  use "Download Manager" to actually download the package or use the NDA's [nda-tools](https://github.com/NDAR/nda-tools) to download the package from the command line. This may take several minutes.  <br>[<img src=imgs/05_downloadcmd.png width=200px>](imgs/05_downloadcmd.png)
+
+
 ### datastructure_manifest.txt 
-
-
-To use this downloader you must first have an NDA account and download the "DCAN Labs ABCD-BIDS MRI pipeline inputs and derivatives" collection from the [NDA website](https://ndar.nih.gov/):
-1.  Navigate to the [NDA website](https://ndar.nih.gov/)
-1.  Under "Get Data" select "Get Data beta"
-1.  On the side bar select "Data from Labs"
-1.  Search for "DCAN Labs ABCD-BIDS MRI pipeline inputs and derivatives"
-1.  After clicking on the Collection Title select "Shared Data"
-1.  Click "Add to Cart" at the bottom
-1.  It will take a minute to update the "Filter Cart" in the upper right corner, but when that is done select "Package/Add to Study"
-1.  Select "Create Package", name your package accordingly, and click "Create Package"
-    -   IMPORTANT: Make sure "Include associated data files" is deselected or it will automatically attempt to download all the data through the NDA's package manager which is unreliable on such a large dataset. That is why we've created this downloader for you.
-1.  Now download the "Download Manager" to actually download the package or use the NDA's [nda-tools](https://github.com/NDAR/nda-tools) to download the package from the command line. This may take several minutes.
-1.  After the download is complete find the "datastructure_manifest.txt" in the downloaded directory. This is the input S3 file that contains AWS S3 links to every input and derivative for all of the selected subjects and you will need to give the path to this file when calling download.py
+`datastructure_manifest.txt` is the only file needed from the NDAR package. It is the principle file that contains AWS S3 links to every input and derivative for all of the selected subjects. You should have acquired it using the instructions above. The path to this file is used when calling `download.py`.
 
 ### data_subsets.txt
 
