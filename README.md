@@ -1,6 +1,6 @@
-# NDA Collection 3165 ABCD-BIDS Downloader
+# NDA Collection 3165 ABCD-BIDS Community Collection (ABCC) Downloader
 
-This tool can be used to download BIDS inputs and derivatives from the DCAN Labs ABCD-BIDS collection 3165 from the NIMH Data Archive (NDA).  All files are hosted by the NDA in Amazon Web Services (AWS) Simple Storage Service (S3) buckets.
+This tool can be used to download BIDS inputs and derivatives from the DCAN Labs ABCD-BIDS community collection (ABCC) from the NIMH Data Archive (NDA).  All files are hosted by the NDA in Amazon Web Services (AWS) Simple Storage Service (S3) buckets.
 
 ## Requirements
 
