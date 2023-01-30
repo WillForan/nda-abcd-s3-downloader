@@ -28,6 +28,10 @@ from multiprocessing.dummy import Pool
 from pandas import read_csv
 from subprocess import call, check_call
 
+import logging
+logging.basicConfig(level=os.environ.get('LOGLEVEL', 'WARNING').upper())
+
+
 
 class RepeatTimer(threading.Timer):
     def run(self):
@@ -381,8 +385,8 @@ def make_config_file(config_filepath, username, password):
     # Change permissions of the config file to prevent other users accessing it
     check_call( ("chmod", "700", config_filepath) )
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     _cli()
 
     print('\nABCD-BIDS Downloader completed!')

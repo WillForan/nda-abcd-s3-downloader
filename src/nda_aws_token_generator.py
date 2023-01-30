@@ -37,8 +37,9 @@ class NDATokenGenerator(object):
             encoded_password = self.__encode_password(password)
             request_xml = self.__construct_request_xml(username, encoded_password)
             return self.__make_request(request_xml)
-        except Exception:
+        except Exception as err:
             if self.__password_encoding == 'SHA-256':
+                logging.info(f'SHA-256 failed w/error {err}. trying again with SHA-1')
                 self.__password_encoding = 'SHA-1'
             else:
                 raise Exception

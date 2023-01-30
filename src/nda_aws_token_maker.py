@@ -4,6 +4,9 @@ import getpass
 import os
 import sys
 
+import logging
+logging.basicConfig(level=os.environ.get('LOGLEVEL', 'WARNING').upper())
+
 try:
     from nda_aws_token_generator import *
 except ImportError:
@@ -34,7 +37,7 @@ generator = NDATokenGenerator(web_service_url)
 try:
     token = generator.generate_token(username, password)
 except Exception as e:
-    print("Failed to create NDA token.")
+    print(f"Failed to create NDA token using {web_service_url}.\n\t{e}")
     sys.exit(1)
 
 # Read .aws/credentials from the user's HOME directory, add a NDA profile, and update with credentials
